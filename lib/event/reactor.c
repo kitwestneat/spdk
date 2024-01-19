@@ -215,7 +215,7 @@ spdk_reactors_init(size_t msg_mempool_size)
 
 	snprintf(mempool_name, sizeof(mempool_name), "evtpool_%d", getpid());
 	g_spdk_event_mempool = spdk_mempool_create(mempool_name,
-			       262144 - 1, /* Power of 2 minus 1 is optimal for memory consumption */
+			       (128*1024) - 1, /* Power of 2 minus 1 is optimal for memory consumption */
 			       sizeof(struct spdk_event),
 			       SPDK_MEMPOOL_DEFAULT_CACHE_SIZE,
 			       SPDK_ENV_SOCKET_ID_ANY);

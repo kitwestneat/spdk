@@ -718,8 +718,9 @@ bdev_uring_group_create_cb(void *io_device, void *ctx_buf)
 
 	/* Do not use IORING_SETUP_IOPOLL until the Linux kernel can support not only
 	 * local devices but also devices attached from remote target */
-	if (io_uring_queue_init(SPDK_URING_QUEUE_DEPTH, &ch->uring, 0) < 0) {
-		SPDK_ERRLOG("uring I/O context setup failure\n");
+	int rc = io_uring_queue_init(SPDK_URING_QUEUE_DEPTH, &ch->uring, 0);
+	if (rc < 0) {
+		SPDK_ERRLOG("uring I/O context setup failure, rc=%d\n", rc);
 		return -1;
 	}
 

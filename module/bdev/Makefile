@@ -32,6 +32,8 @@ DIRS-$(CONFIG_RBD) += rbd
 
 DIRS-$(CONFIG_DAOS) += daos
 
+DIRS-$(CONFIG_NIOVA) += niova
+
 .PHONY: all clean $(DIRS-y)
 
 all: $(DIRS-y)

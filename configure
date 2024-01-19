@@ -130,6 +130,8 @@ function usage() {
 	echo " --without-avahi           No path required."
 	echo " --with-golang             Build with components written in Go"
 	echo " --without-golang          No path required."
+	echo " --with-niova         	 Build NIOVA bdev module."
+	echo " --without-niova           No path required."
 	echo ""
 	echo "Environment variables:"
 	echo ""
@@ -380,6 +382,12 @@ for i in "$@"; do
 			;;
 		--disable-cet)
 			CONFIG[CET]=n
+			;;
+		--with-niova)
+			CONFIG[NIOVA]=y
+			;;
+		--without-niova)
+			CONFIG[NIOVA]=n
 			;;
 		--with-dpdk)
 			# Can we use pkg-config?

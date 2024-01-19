@@ -1689,8 +1689,9 @@ uring_sock_group_impl_create(void)
 
 	group_impl->io_avail = SPDK_SOCK_GROUP_QUEUE_DEPTH;
 
-	if (io_uring_queue_init(SPDK_SOCK_GROUP_QUEUE_DEPTH, &group_impl->uring, 0) < 0) {
-		SPDK_ERRLOG("uring I/O context setup failure\n");
+	int rc = io_uring_queue_init(SPDK_SOCK_GROUP_QUEUE_DEPTH, &group_impl->uring, 0);
+	if (rc < 0) {
+		SPDK_ERRLOG("uring I/O context setup failure, rc=%d\n", rc);
 		free(group_impl);
 		return NULL;
 	}

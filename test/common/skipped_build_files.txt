@@ -57,6 +57,8 @@ test/app/fuzz/llvm_vfio_fuzz/llvm_vfio_fuzz
 module/bdev/daos/bdev_daos
 module/bdev/daos/bdev_daos_rpc
 
+module/bdev/daos/bdev_niova
+
 # Not configured to test mlx5 accel module & crypto lib
 module/accel/mlx5/accel_mlx5
 module/accel/mlx5/accel_mlx5_rpc

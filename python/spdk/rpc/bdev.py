@@ -534,6 +534,36 @@ def bdev_aio_delete(client, name):
     return client.call('bdev_aio_delete', params)
 
 
+def bdev_niova_create(client, name, target, vdev, size):
+    """Create a bdev with niova backend.
+
+    Args:
+        name: name of bdev
+        target: uuid of niova target
+        vdev: uuid of niova vdev
+        size: size of device
+
+    Returns:
+        Name of created bdev.
+    """
+    params = {'name': name,
+              'target': target,
+              'vdev': vdev,
+              'size': size}
+
+    return client.call('bdev_niova_create', params)
+
+
+def bdev_niova_delete(client, name):
+    """Delete a niova bdev.
+
+    Args:
+        name: name of niova bdev to delete
+    """
+    params = {'name': name}
+    return client.call('bdev_niova_delete', params)
+
+
 def bdev_uring_create(client, filename, name, block_size=None):
     """Create a bdev with Linux io_uring backend.
 

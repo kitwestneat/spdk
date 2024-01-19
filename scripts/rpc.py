@@ -506,6 +506,28 @@ if __name__ == "__main__":
     p.add_argument('name', help='aio bdev name')
     p.set_defaults(func=bdev_aio_delete)
 
+    def bdev_niova_create(args):
+        print_json(rpc.bdev.bdev_niova_create(args.client,
+                                              name=args.name,
+                                              target=args.target,
+                                              vdev=args.vdev,
+                                              size=args.size))
+
+    p = subparsers.add_parser('bdev_niova_create', help='Create a bdev with niova backend')
+    p.add_argument('name', help='bdev name')
+    p.add_argument('target', help='UUID of the niova server')
+    p.add_argument('vdev', help='UUID of niova vdev')
+    p.add_argument('size', help='Size of this bdev', type=int, nargs='?')
+    p.set_defaults(func=bdev_niova_create)
+
+    def bdev_niova_delete(args):
+        rpc.bdev.bdev_niova_delete(args.client,
+                                   name=args.name)
+
+    p = subparsers.add_parser('bdev_niova_delete', help='Delete a niova bdev')
+    p.add_argument('name', help='niova bdev name')
+    p.set_defaults(func=bdev_niova_delete)
+
     def bdev_uring_create(args):
         print_json(rpc.bdev.bdev_uring_create(args.client,
                                               filename=args.filename,
